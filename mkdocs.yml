@@ -1,6 +1,6 @@
 site_name: Entregável - Machine Learning
 site_author: Fagundes, B.
-site_url: https://github.io/araujozb/ML-doc-repo.git
+site_url: https://araujozb.github.io/ML-doc-repo
 repo_url: https://github.com/araujozb/ML-doc-repo.git
 repo_name: github/documentation.template
 
@@ -138,4 +138,7 @@ nav:
     - Roteiro 2: ./roteiro2/main.md
     - Roteiro 3: ./roteiro3/main.md
     - Roteiro 4: ./roteiro4/main.md
+  - Exercícios:
+    - Exercício 1: ./exercicio1/main.md
+
   - Projeto: ./projeto/main.md
