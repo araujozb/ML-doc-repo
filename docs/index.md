@@ -3,17 +3,12 @@
 
 ???+ info inline end "Edição"
 
-    2025.1
+    2025.2
 
 
-## Grupo/Kit X
+## Nome
+* Bianca C. Fagundes de Araújo
 
-1. João da Silva
-1. Pedro de Souza
-1. Maria Oliveira
-1. Grupo K
-    - João da Silva
-    - Pedro de Souza
 
 
 

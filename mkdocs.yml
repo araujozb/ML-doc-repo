@@ -1,23 +1,23 @@
-site_name: Template de Entrega
-site_author: Sandmann, H.
-site_url: https://hsandmann.github.io/documentation.template
-repo_url: https://github.com/hsandmann/documentation.template
+site_name: Entregável - Machine Learning
+site_author: Fagundes, B.
+site_url: https://github.io/araujozb/ML-doc-repo.git
+repo_url: https://github.com/araujozb/ML-doc-repo.git
 repo_name: github/documentation.template
 
 theme:
   name: material
   palette:
     # primary: grey
-    # Light mode
+    # light mode palette
     - scheme: default
-      primary: grey
+      primary: '#693EFE'
       toggle:
         icon: material/toggle-switch-off-outline
         name: Switch to dark mode
 
     # Palette toggle for automatic mode
     - media: "(prefers-color-scheme)"
-      primary: grey
+      primary: '#693EFE'
       toggle:
         icon: material/toggle-switch
         name: Switch to light mode
@@ -25,14 +25,14 @@ theme:
     # Palette toggle for light mode
     - media: "(prefers-color-scheme: light)"
       scheme: default 
-      primary: grey
+      primary: '#693EFE'
       toggle:
         icon: material/toggle-switch-off-outline
         name: Switch to dark mode
 
     # Palette toggle for dark mode
     - media: "(prefers-color-scheme: dark)"
-      primary: grey
+      primary: '#693EFE'
       scheme: slate
       toggle:
         icon: material/toggle-switch
