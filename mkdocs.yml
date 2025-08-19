@@ -2,7 +2,7 @@ site_name: Entregável - Machine Learning
 site_author: Fagundes, B.
 site_url: https://araujozb.github.io/ML-doc-repo
 repo_url: https://github.com/araujozb/ML-doc-repo.git
-repo_name: github/documentation.template
+repo_name: github/ML-doc-repo
 
 theme:
   name: material
