@@ -7,7 +7,7 @@
 
 
 ## Nome
-* Bianca C. Fagundes de Araújo
+* Bianca C. Fagundes de Araújo  
 
 
 
