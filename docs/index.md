@@ -13,13 +13,18 @@
 
 
 !!! tip "Instruções"
+    Este template será utilizado como bloco de notas da disciplida de Machine Learning  e também para estudo pessoal. Este template será atualizado e editado a cada entrega e registrando tudo o que foi feito até a ada de entrega via Git.  
 
-    Vocês devem utilizar este template como um bloco de notas para registrar o que foi feito e o que falta fazer. Vocês devem adicionar as informações necessárias.
-    O template deve ser editado e atualizado a cada entrega, registrando assim a data de entrega e o que foi feito até o momento via Git.
+## Abas
+
+As abas da documentação são divididas em:  
+- Exercícios (registros dos exercícios passados na matéria de ML)  
+- Roteiros (resumo e estudos dos conteúdos englobados pela matéria)  
+- Projeto ( dedicado ao Projeto Final da matéria de ML)  
 
 ## Entregas
 
-- [x] Roteiro 1 - Data 23/02/2025
+- [x] Roteiro 1 - Data 29/08/2025
 - [ ] Roteiro 2
 - [ ] Roteiro 3
 - [ ] Roteiro 4

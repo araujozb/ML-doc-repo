@@ -1,13 +1,57 @@
 ## Objetivo
 
 
-Aqui vai o objetivo macro do roteiro. Por que estamos fazendo o que estamos fazendo?
+O objetivo do exercício é aplicar o algoritmo de árvore de decisão em um conjunto de dados de classificação, explorando e pré-processando os dados, realizando a divisão em treino e teste, treinando o modelo e avaliando seu desempenho por meio de métricas adequadas.
 
-## Montagem do Roteiro
+## Etapas
 
-Os pontos "tarefas" são os passos que devem ser seguidos para a realização do roteiro. Eles devem ser claros e objetivos. Com evidências claras de que foram realizados.
+<table>
+  <tr>
+    <th>Etapa</th>
+    <th>Critério</th>
+    <th>Descrição</th>
+    <th>Pontos</th>
+  </tr>
+  <tr>
+    <td>1</td>
+    <td>Exploração dos Dados</td>
+    <td>Análise inicial do conjunto de dados - com explicação sobre a natureza dos dados -, incluindo visualizações e estatísticas descritivas.</td>
+    <td>20</td>
+  </tr>
+  <tr>
+    <td>2</td>
+    <td>Pré-processamento</td>
+    <td>Limpeza dos dados, tratamento de valores ausentes e normalização.</td>
+    <td>10</td>
+  </tr>
+  <tr>
+    <td>3</td>
+    <td>Divisão dos Dados</td>
+    <td>Separação do conjunto de dados em treino e teste.</td>
+    <td>20</td>
+  </tr>
+  <tr>
+    <td>4</td>
+    <td>Treinamento do Modelo</td>
+    <td>Implementação do modelo Decision Tree.</td>
+    <td>10</td>
+  </tr>
+  <tr>
+    <td>5</td>
+    <td>Avaliação do Modelo</td>
+    <td>Avaliação do desempenho do modelo utilizando métricas apropriadas.</td>
+    <td>20</td>
+  </tr>
+  <tr>
+    <td>6</td>
+    <td>Relatório Final</td>
+    <td>Documentação do processo, resultados obtidos e possíveis melhorias. Obrigatório: uso do template-projeto-integrador, individual.</td>
+    <td>20</td>
+  </tr>
+</table>
 
-### Tarefa 1
+
+### Etapa 1
 
 Instalando o MAAS:
 
