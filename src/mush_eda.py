@@ -1,11 +1,13 @@
 from sklearn.datasets import fetch_openml #busca os datasets direto no site openML
 import pandas as pd
 import matplotlib.pyplot as plt
+import os
 
 
 
 #caminho da pastas de imagens p/ o mkdocs ler
-IMG_DIR = '.../decision-tree/img/'
+IMG_DIR = "docs/decision-tree/exercicio/img/"
+os.makedirs(IMG_DIR, exist_ok=True)
 
 #objeto bush com varios atributos
 mush = fetch_openml(name="mushroom", version=1, as_frame=True) #as_frame retorna o dataset como dataframe do pd
@@ -32,12 +34,22 @@ for col in df.columns:
 print((df["stalk-root"] == "NaN").sum())
 
 # gráfico de barra simples ---> column odor // Odor Distribution 
-# 5.1 – Barras simples de 'odor'
 df["odor"].value_counts().plot(kind="bar", title="Odor Distribution")
 plt.tight_layout()
-plt.savefig(IMG_DIR + "bar_odor.png")   # salva
-plt.show()                              # mostra na tela
+plt.savefig(os.path.join(IMG_DIR, "bar_odor.png"))
 plt.clf()
-df["odor"].value_counts().plot(kind="bar", title="Frequência de ODOR")
-plt.tight_layout(); plt.savefig(IMG_DIR + "bar_odor.png"); plt.clf()
 plt.show()
+
+pd.crosstab(df["gill-color"], df["class"]).plot(
+    kind="bar", 
+    stacked=True, 
+    title="Gill-color x Class"
+)
+plt.tight_layout()
+plt.savefig(os.path.join(IMG_DIR, "stack_gillcolor_class.png"))
+plt.clf()
+plt.show()
+
+
+
+
