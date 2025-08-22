@@ -1,7 +1,9 @@
 ## Objetivo
 
 
-O objetivo do exercício é aplicar o algoritmo de árvore de decisão em um conjunto de dados de classificação, explorando e pré-processando os dados, realizando a divisão em treino e teste, treinando o modelo e avaliando seu desempenho por meio de métricas adequadas.
+Aplicar o algoritmo de árvore de decisão em um conjunto de dados de classificação, explorando e pré-processando os dados, realizando a divisão em treino e teste, treinando o modelo e avaliando seu desempenho por meio de métricas adequadas.
+
+
 
 ## Etapas
 
@@ -14,7 +16,7 @@ O objetivo do exercício é aplicar o algoritmo de árvore de decisão em um con
   </tr>
   <tr>
     <td>1</td>
-    <td>Exploração dos Dados</td>
+    <td>Exploração dos Dados (EDA)</td>
     <td>Análise inicial do conjunto de dados - com explicação sobre a natureza dos dados -, incluindo visualizações e estatísticas descritivas.</td>
     <td>20</td>
   </tr>

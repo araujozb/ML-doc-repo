@@ -136,8 +136,9 @@ extra_javascript:
 
 nav:
   - Home: index.md
-  - Exercícios:
-    - Exercício 1 - Árvore de Decisão: ./exercicio1/main.md
+  - Decision Tree:
+    - Exercício: ./decision-tree/exercicio/main.md
+    - Roteiro: ./decision-tree/roteiro/main.md
   - Roteiros:
     - Roteiro 1: ./roteiro1/main.md
     - Roteiro 2: ./roteiro2/main.md
