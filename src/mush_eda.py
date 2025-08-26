@@ -2,6 +2,7 @@ from sklearn.datasets import fetch_openml #busca os datasets direto no site open
 import pandas as pd
 import matplotlib.pyplot as plt
 import os
+import numpy as np
 
 
 
@@ -17,7 +18,7 @@ df = mush.frame
 
 
 # visualizando os dados
-print(df.head(20)) # limit 20 no df
+print(df.head(200)) # limit 200 no df
 print(df.info()) # dá um describe se é category ou não ;; binario aparece como category pq no fim é a mesma coisa
 print("Shape:", df.shape) #qtd LxC
 print(df.describe(include='all').T.head(20)) #gera estat. descritivas, funciona c/ col numericas mas o include=all // o T transpõe o df de colunas ---> linhas
@@ -26,9 +27,9 @@ print("\nDistribuição da classe:\n", df["class"].value_counts()) # conta quant
 # contagem de valores ausentes
 
 col = df.columns
-print("\nValores 'NaN' por coluna (potenciais ausentes):")
+print("\nValores '?' por coluna (potenciais ausentes):")
 for col in df.columns:
-    print(f"{col}: {(df[col] == 'NaN').sum()}")
+    print(f"{col}: {(df[col] == '?').sum()}")
 
 # validando a contagem de cima com uma coluna especifica
 print((df["stalk-root"] == "NaN").sum())
@@ -40,6 +41,7 @@ plt.savefig(os.path.join(IMG_DIR, "bar_odor.png"))
 plt.clf()
 plt.show()
 
+# grafico de barra empilhada --> gill-color x class
 pd.crosstab(df["gill-color"], df["class"]).plot(
     kind="bar", 
     stacked=True, 
