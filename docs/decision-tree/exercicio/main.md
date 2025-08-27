@@ -7,50 +7,14 @@ Aplicar o algoritmo de árvore de decisão em um conjunto de dados de classifica
 
 ## Etapas
 
-<table>
-  <tr>
-    <th>Etapa</th>
-    <th>Critério</th>
-    <th>Descrição</th>
-    <th>Pontos</th>
-  </tr>
-  <tr>
-    <td>1</td>
-    <td>Exploração dos Dados (EDA)</td>
-    <td>Análise inicial do conjunto de dados - com explicação sobre a natureza dos dados -, incluindo visualizações e estatísticas descritivas.</td>
-    <td>20</td>
-  </tr>
-  <tr>
-    <td>2</td>
-    <td>Pré-processamento</td>
-    <td>Limpeza dos dados, tratamento de valores ausentes e normalização.</td>
-    <td>10</td>
-  </tr>
-  <tr>
-    <td>3</td>
-    <td>Divisão dos Dados</td>
-    <td>Separação do conjunto de dados em treino e teste.</td>
-    <td>20</td>
-  </tr>
-  <tr>
-    <td>4</td>
-    <td>Treinamento do Modelo</td>
-    <td>Implementação do modelo Decision Tree.</td>
-    <td>10</td>
-  </tr>
-  <tr>
-    <td>5</td>
-    <td>Avaliação do Modelo</td>
-    <td>Avaliação do desempenho do modelo utilizando métricas apropriadas.</td>
-    <td>20</td>
-  </tr>
-  <tr>
-    <td>6</td>
-    <td>Relatório Final</td>
-    <td>Documentação do processo, resultados obtidos e possíveis melhorias. Obrigatório: uso do template-projeto-integrador, individual.</td>
-    <td>20</td>
-  </tr>
-</table>
+## Etapas
+
+- [x] Exploração dos Dados (EDA) 
+- [x] Pré-processamento
+- [x] Divisão dos Dados
+- [ ] Treinamento do Modelo
+- [ ] Avaliação do Modelo
+- [ ] Relatório Final
 
 
 ### Etapa 1
