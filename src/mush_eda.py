@@ -27,12 +27,12 @@ print("\nDistribuição da classe:\n", df["class"].value_counts()) # conta quant
 # contagem de valores ausentes
 
 col = df.columns
-print("\nValores '?' por coluna (potenciais ausentes):")
+print("\nValores 'NaN' por coluna (potenciais ausentes):")
 for col in df.columns:
-    print(f"{col}: {(df[col] == '?').sum()}")
+    print(f"{col}: {(df[col] == 'NaN').sum()}")
 
 # validando a contagem de cima com uma coluna especifica
-print((df["stalk-root"] == "NaN").sum())
+print((df["stalk-root"] == 'NaN').sum())
 
 # gráfico de barra simples ---> column odor // Odor Distribution 
 df["odor"].value_counts().plot(kind="bar", title="Odor Distribution")

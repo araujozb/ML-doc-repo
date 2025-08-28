@@ -25,7 +25,7 @@ Instalando o MAAS:
 sudo snap install maas --channel=3.5/Stable
 ```
 
-![Tela do Dashboard do MAAS](./maas.png)
+    ![Tela do Dashboard do MAAS](./maas.png)
 /// caption
 Dashboard do MAAS
 ///
