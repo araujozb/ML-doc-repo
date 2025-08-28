@@ -7,8 +7,6 @@ Aplicar o algoritmo de árvore de decisão em um conjunto de dados de classifica
 
 ## Etapas
 
-## Etapas
-
 - [x] Exploração dos Dados (EDA) 
 - [x] Pré-processamento
 - [x] Divisão dos Dados
