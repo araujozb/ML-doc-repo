@@ -21,7 +21,7 @@ O dataset escolhido para o projeto foi o Mushroom Dataset, onde há as especific
 ---
 
 
-## 1. Exploração dos Dados (EDA)
+### 1. Exploração dos Dados (EDA)
 Nesta etapa, buscou-se compreender a natureza do dataset **Mushroom**, obtido do OpenML.  
 Foram analisados o tamanho do conjunto, a distribuição da variável alvo e algumas variáveis descritivas, com apoio de estatísticas e gráficos.  
 
@@ -154,7 +154,7 @@ O modelo foi ajustado com o conjunto de treino e gerou previsões para o conjunt
 
 ---
 
-## 5. Avaliação do Modelo  
+### 5. Avaliação do Modelo  
 
 O desempenho do modelo foi medido por métricas de acurácia, precisão, recall e F1-score, além da matriz de confusão.  
 
@@ -201,7 +201,7 @@ O desempenho do modelo foi medido por métricas de acurácia, precisão, recall 
 
 ---
 
-## 6. Importância das Features  
+### 6. Importância das Features  
 
 Foram analisadas as variáveis que mais contribuíram para a redução de impureza nos nós da árvore.
 
@@ -243,7 +243,7 @@ Foram analisadas as variáveis que mais contribuíram para a redução de impure
 
 ---
 
-## 7. Visualização da Árvore  
+### 7. Visualização da Árvore  
 
 Para melhor interpretabilidade, foi gerada uma visualização dos quatro primeiros níveis da árvore, evitando excesso de ramificações.  
 
@@ -278,7 +278,7 @@ Para melhor interpretabilidade, foi gerada uma visualização dos quatro primeir
 
 ---
 
-## 8. Conclusões
+### 8. Conclusões
 
 - O modelo obteve **100% de acurácia**, mas isso não é overfitting, e sim reflexo de um dataset **sem ruído** e **determinístico**.  
 - O pré-processamento simples (imputação da moda + One-Hot Encoding) foi suficiente.  
