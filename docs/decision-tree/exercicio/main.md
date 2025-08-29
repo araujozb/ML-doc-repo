@@ -22,6 +22,9 @@ O dataset escolhido para o projeto foi o Mushroom Dataset, onde há as especific
 
 
 ## 1. Exploração dos Dados (EDA)
+Nesta etapa, buscou-se compreender a natureza do dataset **Mushroom**, obtido do OpenML.  
+Foram analisados o tamanho do conjunto, a distribuição da variável alvo e algumas variáveis descritivas, com apoio de estatísticas e gráficos.  
+
 === "Code"
     ```python
     from sklearn.datasets import fetch_openml
@@ -68,7 +71,10 @@ O dataset escolhido para o projeto foi o Mushroom Dataset, onde há as especific
 
 ---
 
-## 2. Pré-processamento
+### 2. Pré-processamento  
+
+dataset apresentou valores ausentes representados por `"?"`, tratados como `NaN` e posteriormente imputados pela moda.  
+O alvo `class` foi convertido para formato binário (`e → 0`, `p → 1`).  
 
 === "Code"
     ```python
@@ -92,7 +98,10 @@ O dataset escolhido para o projeto foi o Mushroom Dataset, onde há as especific
 
 ---
 
-## 3. Divisão dos Dados
+### 3. Divisão dos Dados  
+
+As variáveis categóricas foram transformadas por **One-Hot Encoding**, resultando em 117 colunas binárias.  
+Em seguida, aplicou-se divisão estratificada em treino (70%) e teste (30%).  
 
 === "Code"
     ```python
@@ -120,7 +129,10 @@ O dataset escolhido para o projeto foi o Mushroom Dataset, onde há as especific
 
 ---
 
-## 4. Treinamento do Modelo
+### 4. Treinamento do Modelo  
+
+Foi utilizado o classificador `DecisionTreeClassifier` da biblioteca scikit-learn, em sua configuração padrão.  
+O modelo foi ajustado com o conjunto de treino e gerou previsões para o conjunto de teste.
 
 === "Code"
     ```python
@@ -142,7 +154,9 @@ O dataset escolhido para o projeto foi o Mushroom Dataset, onde há as especific
 
 ---
 
-## 5. Avaliação do Modelo
+## 5. Avaliação do Modelo  
+
+O desempenho do modelo foi medido por métricas de acurácia, precisão, recall e F1-score, além da matriz de confusão.  
 
 === "Code"
     ```python
@@ -187,7 +201,9 @@ O dataset escolhido para o projeto foi o Mushroom Dataset, onde há as especific
 
 ---
 
-## 6. Importância das Features
+## 6. Importância das Features  
+
+Foram analisadas as variáveis que mais contribuíram para a redução de impureza nos nós da árvore.
 
 === "Code"
     ```python
@@ -227,7 +243,9 @@ O dataset escolhido para o projeto foi o Mushroom Dataset, onde há as especific
 
 ---
 
-## 7. Visualização da Árvore
+## 7. Visualização da Árvore  
+
+Para melhor interpretabilidade, foi gerada uma visualização dos quatro primeiros níveis da árvore, evitando excesso de ramificações.  
 
 === "Code"
     ```python
@@ -268,59 +286,3 @@ O dataset escolhido para o projeto foi o Mushroom Dataset, onde há as especific
 - A árvore de decisão mostrou-se totalmente interpretável, atendendo ao objetivo do exercício.
 
 
-
-
-Instalando o MAAS:
-
-<!-- termynal -->
-
-``` bash
-sudo snap install maas --channel=3.5/Stable
-```
-
-    ![Tela do Dashboard do MAAS](./maas.png)
-/// caption
-Dashboard do MAAS
-///
-
-Conforme ilustrado acima, a tela inicial do MAAS apresenta um dashboard com informações sobre o estado atual dos servidores gerenciados. O dashboard é composto por diversos painéis, cada um exibindo informações sobre um aspecto específico do ambiente gerenciado. Os painéis podem ser configurados e personalizados de acordo com as necessidades do usuário.
-
-### Tarefa 2
-
-## App
-
-
-
-### Tarefa 1
-
-### Tarefa 2
-
-Exemplo de diagrama
-
-```mermaid
-architecture-beta
-    group api(cloud)[API]
-
-    service db(database)[Database] in api
-    service disk1(disk)[Storage] in api
-    service disk2(disk)[Storage] in api
-    service server(server)[Server] in api
-
-    db:L -- R:server
-    disk1:T -- B:server
-    disk2:T -- B:db
-```
-
-[Mermaid](https://mermaid.js.org/syntax/architecture.html){:target="_blank"}
-
-## Questionário, Projeto ou Plano
-
-Esse seção deve ser preenchida apenas se houver demanda do roteiro.
-
-## Discussões
-
-Quais as dificuldades encontradas? O que foi mais fácil? O que foi mais difícil?
-
-## Conclusão
-
-O que foi possível concluir com a realização do roteiro?
