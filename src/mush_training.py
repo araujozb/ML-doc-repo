@@ -66,8 +66,10 @@ print(f"Número de folhas: {clf.get_n_leaves()}")
 # feature_importances mede a importancia das features de acordo
 # com quanto cada uma contribui para reduzir impurezassssssss
 importances = pd.Series(clf.feature_importances_, index=x_train.columns).sort_values(ascending=False)
-print("\nTop 10 features + importantes")
-print(importances.head(10))
-
-
+plt.figure(figsize=(10,6))
+importances.head(10).plot(kind="bar")
+plt.title("Top 10 Features Importantes")
+plt.tight_layout()
+plt.savefig("docs/decision-tree/exercicio/img/feature_importances.png")
+plt.show()
 
