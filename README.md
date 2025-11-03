@@ -22,7 +22,8 @@ python3 -m pip install -r requirements.txt --upgrade
 
 ## Deployment
 
-O material utiliza o [mkdocs](https://www.mkdocs.org/) para gerar a documentação. Para visualizar a documentação, execute o comando:
+O material utiliza o [mkdocs](https://www.mkdocs.org/) para gerar a documentação. Para visualizar a documentação, execute o comando
+:
 
 ``` shell
 mkdocs serve -o
