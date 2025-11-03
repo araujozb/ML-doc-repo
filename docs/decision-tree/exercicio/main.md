@@ -1,7 +1,8 @@
 ## Objetivo
 
+Aplicar o algoritmo K-Nearest Neighbors (KNN) em um conjunto de dados de classificação, utilizando a mesma base de dados empregada no experimento anterior com Árvore de Decisão (Decision Tree) — o Mushroom Dataset.
 
-Aplicar o algoritmo de árvore de decisão em um conjunto de dados de classificação, explorando e pré-processando os dados, realizando a divisão em treino e teste, treinando o modelo e avaliando seu desempenho por meio de métricas adequadas.
+O objetivo pe comparar o desempenho entre os dois algoritmos, reutilizando o mesmo processo de exploração e pré-processamento, para avaliar diferenças de comportamento e de interpretação entre modelos baseados em regras (Decision Tree) e modelos baseados em distância (KNN).
 
 
 
@@ -16,48 +17,15 @@ Aplicar o algoritmo de árvore de decisão em um conjunto de dados de classifica
 
 
 ### Escolha do Dataset -  (Mushroom Dataset)  
-O dataset escolhido para o projeto foi o Mushroom Dataset, onde há as especificações do cogumelo e uma coluna "class" que possui duas categorias ( e - eatable / p - poisonous ).  
-
+O mesmo dataset utilizado no projeto de Árvore de Decisão foi mantido aqui, para permitir comparação direta entre os algoritmos.
+O Mushroom Dataset, obtido no OpenML, descrede 8.124 cogumeos com 22 atributos categóricos (ex.: odor, cor das lamelas, textura do chapéu) e uma variável-alvo "class" com duas categorias:
+- e: edible (comestível)
+- p: poisonous (venenoso)
 ---
 
 
 ### 1. Exploração dos Dados (EDA)
-Nesta etapa, buscou-se compreender a natureza do dataset **Mushroom**, obtido do OpenML.  
-Foram analisados o tamanho do conjunto, a distribuição da variável alvo e algumas variáveis descritivas, com apoio de estatísticas e gráficos.  
-
-=== "Code"
-    ```python
-    from sklearn.datasets import fetch_openml
-    import pandas as pd
-    import matplotlib.pyplot as plt
-    import os
-
-    mush = fetch_openml(name="mushroom", version=1, as_frame=True)
-    df = mush.frame
-
-    print("Shape:", df.shape)
-    print(df.head())
-    print(df.describe(include='all').T.head())
-    print("\nDistribuição da classe:\n", df["class"].value_counts())
-
-    img_dir = "docs/decision-tree/exercicio/img"
-    os.makedirs(img_dir, exist_ok=True)
-
-    df["odor"].value_counts().plot(kind="bar", title="Frequência de ODOR")
-    plt.savefig(f"{img_dir}/eda_bar_odor.png"); plt.clf()
-
-    pd.crosstab(df["gill-color"], df["class"]).plot(kind="bar", stacked=True, title="Gill-color x Class")
-    plt.savefig(f"{img_dir}/eda_stack_gillcolor.png"); plt.clf()
-    ```
-
-=== "Output"
-    ```
-    Shape: (8124, 23)
-    Distribuição da classe:
-    e    4208
-    p    3916
-    Name: class, dtype: int64
-    ```
+A etapa de exploração foi reaproveitada integralmente do projeto anterior, visto que as estatísticas permanecem as mesmas.
 
 === "Gráfico"
     ![Distribuição de Odor](img/bar_odor.png)  
@@ -73,48 +41,59 @@ Foram analisados o tamanho do conjunto, a distribuição da variável alvo e alg
 
 ### 2. Pré-processamento  
 
-dataset apresentou valores ausentes representados por `"?"`, tratados como `NaN` e posteriormente imputados pela moda.  
-O alvo `class` foi convertido para formato binário (`e → 0`, `p → 1`).  
+Assim como no projeto anterior, o dataset apresentava valores ausentes representados por "?", tratados como NaN e imputados pela moda.
+
+As variáveis categóricas foram codificadas com One-Hot Encoding, também reaproveitando a mesma estratégia usada na árvore de decisão.
+ 
+A principal diferença é conceitual:
+
+- Na **Árvore de Decisão**, o One-Hot era opcional (o modelo lida bem com categorias).
+
+- No **KNN**, o One-Hot é essencial, pois o algoritmo depende de distâncias numéricas.
 
 === "Code"
     ```python
     import numpy as np
+    from sklearn.preprocessing import OneHotEncoder
 
     df.replace("?", np.nan, inplace=True)
     df = df.fillna(df.mode().iloc[0])
 
     X = df.drop(columns=["class"])
     y = df["class"].map({"e": 0, "p": 1})
+
+    encoder = OneHotEncoder(sparse_output=False, handle_unknown="ignore")
+    X_encoded = encoder.fit_transform(X)
+    X_encoded = pd.DataFrame(X_encoded, columns=encoder.get_feature_names_out(X.columns))
     ```
 
 === "Output"
     ```
     Nenhum valor ausente após imputação.
+    
     ```
 
 === "Explicação"
-    - Substituímos `?` por `NaN` e aplicamos imputação pela **moda**.  
-    - Target `class` convertido em binário (`e→0`, `p→1`).  
+    - Mesmo tratamento de dados usado na Árvore de Decisão, garantindo comparabilidade.  
+    - One-Hot Encoding necessário para o KNN medir distâncias corretamente.
+    - Target convertido em binário (e→0, p→1), mantendo o mesmo mapeamento anterior.
 
 ---
 
 ### 3. Divisão dos Dados  
 
-As variáveis categóricas foram transformadas por **One-Hot Encoding**, resultando em 117 colunas binárias.  
-Em seguida, aplicou-se divisão estratificada em treino (70%) e teste (30%).  
+Os dados foram divididos em conjuntos de treino (70%) e teste (30%) de forma estratificada, preservando a proporção entre as classes.
 
 === "Code"
     ```python
-    from sklearn.model_selection import train_test_split
-    from sklearn.preprocessing import OneHotEncoder
-
-    encoder = OneHotEncoder(sparse_output=False, handle_unknown="ignore")
-    X_encoded = encoder.fit_transform(X)
-    X_encoded = pd.DataFrame(X_encoded, columns=encoder.get_feature_names_out(X.columns))
+   from sklearn.model_selection import train_test_split
 
     X_train, X_test, y_train, y_test = train_test_split(
         X_encoded, y, test_size=0.3, stratify=y, random_state=42
     )
+
+    print("X_train:", X_train.shape)
+    print("X_test:", X_test.shape)
     ```
 
 === "Output"
@@ -124,165 +103,152 @@ Em seguida, aplicou-se divisão estratificada em treino (70%) e teste (30%).
     ```
 
 === "Explicação"
-    - **One-Hot Encoding** expande variáveis categóricas em binárias.  
-    - Split estratificado 70/30 mantém a proporção de classes.  
+    - Divisão 70/30 com estratificação, mantendo a proporção original das classes
+    - O One-Hot Encoding aplicado previamente garante que todas as variáveis categóricas sejam tratadas como vetores binários, permitindo o cálculo correto das distâncias pelo KNN.
+    - Essa abordagem preserva a coerência experimental em relação ao projeto anterior de Árvore de Decisão — apenas o algoritmo de modelagem muda, não o tratamento dos dados.
 
 ---
 
 ### 4. Treinamento do Modelo  
 
-Foi utilizado o classificador `DecisionTreeClassifier` da biblioteca scikit-learn, em sua configuração padrão.  
-O modelo foi ajustado com o conjunto de treino e gerou previsões para o conjunto de teste.
+O modelo K-Nearest Neighbors (KNN) foi treinado com diferentes valores de k (1, 3, 5, 7, 9, 11), buscando identificar o número ideal de vizinhos que maximiza o desempenho.
+
+Como o algoritmo é baseado em distâncias, o One-Hot Encoding aplicado anteriormente garante que as categorias sejam interpretadas de forma binária e equidistante, evitando distorções no cálculo da similaridade entre amostras.
 
 === "Code"
     ```python
-    from sklearn.tree import DecisionTreeClassifier
+    from sklearn.neighbors import KNeighborsClassifier
+    from sklearn.metrics import accuracy_score
 
-    clf = DecisionTreeClassifier(random_state=42)
-    clf.fit(X_train, y_train)
-    y_pred = clf.predict(X_test)
+    melhor_k = None
+    melhor_acc = 0.0
+
+    for k in [1, 3, 5, 7, 9, 11]:
+        knn = KNeighborsClassifier(n_neighbors=k)
+        knn.fit(X_train, y_train)
+        acc = accuracy_score(y_test, knn.predict(X_test))
+        print(f"k={k} → accuracy={acc:.4f}")
+        if acc > melhor_acc:
+            melhor_acc = acc
+            melhor_k = k
+
+    print(f"\nMelhor K encontrado: {melhor_k} com acurácia de {melhor_acc:.4f}")
+
     ```
 
 === "Output"
     ```
-    Modelo DecisionTree treinado com sucesso.
+    k=1 → accuracy=1.0000
+    k=3 → accuracy=1.0000
+    k=5 → accuracy=1.0000
+    k=7 → accuracy=1.0000
+    k=9 → accuracy=0.9992
+    k=11 → accuracy=0.9992
+    Melhor K encontrado: 1 com acurácia de 1.0000
+
     ```
 
 === "Explicação"
-    - Classificador `DecisionTreeClassifier`.  
-    - Treinado em `X_train, y_train`, avaliado em `X_test`.  
+    - O desempenho manteve-se estável entre k=1 e k=7.
+    - Foi adotado k = 3, o menor valor ímpar com acurácia máxima e menor variância.
+    - O modelo com k=3 servirá como base para a avaliação final. 
 
 ---
 
 ### 5. Avaliação do Modelo  
 
-O desempenho do modelo foi medido por métricas de acurácia, precisão, recall e F1-score, além da matriz de confusão.  
+Foram calculadas métricas de acurácia, precisão, recall e F1-score, além da matriz de confusão.
+
+Como no modelo anterior (árvore de decisão), o KNN também atingiu desempenho máximo — o que reforça a natureza determinística do dataset Mushroom. 
 
 === "Code"
     ```python
-    from sklearn.metrics import classification_report, confusion_matrix
+        from sklearn.metrics import accuracy_score, precision_score, recall_score, f1_score, confusion_matrix, ConfusionMatrixDisplay
     import matplotlib.pyplot as plt
 
-    print(classification_report(y_test, y_pred, target_names=["edible(0)", "poisonous(1)"]))
+    knn_final = KNeighborsClassifier(n_neighbors=3)
+    knn_final.fit(X_train, y_train)
+    y_pred = knn_final.predict(X_test)
+
+    acc = accuracy_score(y_test, y_pred)
+    prec = precision_score(y_test, y_pred)
+    rec = recall_score(y_test, y_pred)
+    f1 = f1_score(y_test, y_pred)
+
+    print(f"Accuracy={acc:.4f} Precision={prec:.4f} Recall={rec:.4f} F1={f1:.4f}")
 
     cm = confusion_matrix(y_test, y_pred)
-    plt.imshow(cm, cmap="Blues")
-    plt.title("Matriz de Confusão — Decision Tree")
-    plt.xticks([0,1], ["edible(0)", "poisonous(1)"])
-    plt.yticks([0,1], ["edible(0)", "poisonous(1)"])
-    for i in range(cm.shape[0]):
-        for j in range(cm.shape[1]):
-            plt.text(j, i, cm[i, j], ha="center", va="center")
-    plt.xlabel("Predito"); plt.ylabel("Real")
-    plt.savefig("docs/decision-tree/exercicio/img/cm_baseline.png")
+    ConfusionMatrixDisplay(cm, display_labels=["edible(0)", "poisonous(1)"]).plot()
+    plt.title("Matriz de Confusão — KNN (k=3)")
+    plt.tight_layout()
+    plt.savefig("docs/knn/exercicio/img/confusion_matrix_k3.png", dpi=150)
     plt.show()
+
     ```
 
 === "Output"
     ```
-                  precision    recall  f1-score   support
-    edible(0)       1.00      1.00      1.00      1263
-    poisonous(1)    1.00      1.00      1.00      1175
-    accuracy        1.00      2438
-    macro avg       1.00      1.00      1.00      2438
-    weighted avg    1.00      1.00      1.00      2438
+    Accuracy=1.0000  Precision=1.0000  Recall=1.0000  F1=1.0000
     ```
-
-=== "Gráfico"
-    ![Matriz de Confusão](img/cm_baseline.png)
 
 === "Explicação"
     - O modelo atingiu **100% de acurácia** no conjunto de teste.  
-    - Isso não é **overfitting**, porque:  
-        1. O split foi feito corretamente (70/30, estratificado).  
-        2. O dataset **Mushroom é determinístico**: não há casos com atributos iguais mas classes diferentes.  
-        3. Portanto, a árvore consegue separar perfeitamente as classes sem memorizar ruído.  
-    - Em datasets reais, esse resultado seria suspeito, mas aqui é esperado.  
+    - Não houve falsos positivos nem falsos negativos. 
+    - O desempenho é idêntico ao da Árvore de Decisão, confirmando a separabilidade perfeita do dataset. 
 
 ---
 
-### 6. Importância das Features  
+### 6. Visualização do Limite de Decisão (PCA) 
 
-Foram analisadas as variáveis que mais contribuíram para a redução de impureza nos nós da árvore.
+Para representar graficamente as regiões de decisão do modelo, aplicou-se PCA (Análise de Componentes Principais), reduzindo as 117 dimensões (geradas pelo One-Hot Encoding) para apenas 2 componentes.
+
+Essa projeção é apenas visual — o modelo original continua sendo treinado com todas as variáveis.
 
 === "Code"
     ```python
-    import pandas as pd
-    import matplotlib.pyplot as plt
-    import os
+        from sklearn.decomposition import PCA
+        import numpy as np
+        import matplotlib.pyplot as plt
+        from sklearn.neighbors import KNeighborsClassifier
 
-    importances = pd.Series(clf.feature_importances_, index=X_train.columns).sort_values(ascending=False)
+        pca = PCA(n_components=2, random_state=42)
+        X_train_2d = pca.fit_transform(X_train)
+        knn_2d = KNeighborsClassifier(n_neighbors=3).fit        (X_train_2d, y_train)
 
-    top10 = importances.head(10)
-    print(top10)
+        h = 0.05
+        x_min, x_max = X_train_2d[:,0].min()-1, X_train_2d[:,0].max     ()+1
+        y_min, y_max = X_train_2d[:,1].min()-1, X_train_2d[:,1].max     ()+1
+        xx, yy = np.meshgrid(np.arange(x_min, x_max, h), np.arange      (y_min, y_max, h))
 
-    plt.figure(figsize=(10,6))
-    top10.plot(kind="bar")
-    plt.title("Top 10 Features Importantes")
-    plt.tight_layout()
-    plt.savefig("docs/decision-tree/exercicio/img/feature_importances.png")
-    plt.show()
-    ```
+        Z = knn_2d.predict(np.c_[xx.ravel(), yy.ravel()]).reshape       (xx.shape)
+        plt.figure(figsize=(8,6))
+        plt.contourf(xx, yy, Z, alpha=0.3)
+        plt.scatter(X_train_2d[:,0], X_train_2d[:,1], c=y_train,        s=20, edgecolor="k")
+        plt.xlabel("PC1"); plt.ylabel("PC2")
+        plt.title("KNN Decision Boundary (PCA-2D, k=3)")
+        plt.tight_layout()
+        plt.savefig("docs/knn/exercicio/img/        decision_boundary_pca2d.png", dpi=150)
 
-=== "Output"
-    ```
-    odor_n                 0.89
-    spore-print-color_r    0.04
-    gill-size_b            0.03
-    stalk-root_b           0.02
-    ...
     ```
 
 === "Gráfico"
-    ![Top 10 Features](img/feature_importances.png)
+    ![.](img/decision_boundary_pca2d.png)
 
 === "Explicação"
-    - O atributo **odor** é de longe o mais importante para a classificação.  
-    - Outros atributos como **spore-print-color** e **gill-size** também contribuem.  
-    - Features com importância próxima de zero não foram usadas na árvore.  
-
----
-
-### 7. Visualização da Árvore  
-
-Para melhor interpretabilidade, foi gerada uma visualização dos quatro primeiros níveis da árvore, evitando excesso de ramificações.  
-
-=== "Code"
-    ```python
-    from sklearn.tree import plot_tree
-
-    plt.figure(figsize=(20, 10))
-    plot_tree(
-        clf,
-        feature_names=X_train.columns,
-        class_names=["edible(0)", "poisonous(1)"],
-        filled=True, rounded=True, fontsize=8,
-        max_depth=4
-    )
-    plt.savefig("docs/decision-tree/exercicio/img/tree_top.png")
-    plt.show()
-    ```
-
-=== "Output"
-    ```
-    Figura salva em: docs/decision-tree/exercicio/img/tree_top.png
-    ```
-
-=== "Árvore"
-    ![Árvore de Decisão (topo)](img/tree_top_depth4.png)
-
-=== "Explicação"
-    - Mostramos apenas os **4 primeiros níveis** da árvore para clareza.  
-    - A raiz é dominada por variáveis de **odor**, confirmando sua relevância.  
-    - A árvore completa é muito maior devido ao One-Hot Encoding.  
+    - As áreas coloridas representam regiões de decisão baseadas na distância aos vizinhos mais próximos.
+    - O gráfico mostra uma separação nítida entre as classes projetadas no plano 2D.
+    - O uso de PCA permite visualizar o comportamento de um modelo de alta dimensionalidade. 
 
 ---
 
 ### 8. Conclusões
 
-- O modelo obteve **100% de acurácia**, mas isso não é overfitting, e sim reflexo de um dataset **sem ruído** e **determinístico**.  
-- O pré-processamento simples (imputação da moda + One-Hot Encoding) foi suficiente.  
-- As variáveis mais importantes confirmam expectativas biológicas (ex.: odor como critério principal).  
-- A árvore de decisão mostrou-se totalmente interpretável, atendendo ao objetivo do exercício.
+O modelo KNN alcançou desempenho máximo (100%), assim como a Árvore de Decisão. Esse resultado confirma que o dataset Mushroom é determinístico, ou seja, não contém amostras idênticas com classes diferentes.
+
+O One-Hot Encoding teve papel essencial no sucesso do modelo, pois possibilitou que o KNN interpretasse corretamente as categorias durante o cálculo de distâncias.
+
+A visualização via PCA evidenciou a clara separação entre classes, reforçando a consistência do resultado.
+
+Conclusão: ambos os modelos (Decision Tree e KNN) são capazes de resolver perfeitamente esse problema, mas a Árvore de Decisão é mais interpretável, enquanto o KNN é mais sensível a redundâncias e ao volume de dados.
 
 
