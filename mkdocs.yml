@@ -140,8 +140,8 @@ nav:
     - Exercício: ./decision-tree/exercicio/main.md
     - Roteiro: ./decision-tree/roteiro/main.md
   - KNN:
-    - Exercício: ./KNN/exercicio/main.md
-    - Roteiro: ./KNN/roteiro/main.md
+    - Exercício: ./knn/exercicio/main.md
+    - Roteiro: ./knn/roteiro/main.md
   - Roteiros:
     - Roteiro 1: ./roteiro1/main.md
     - Roteiro 2: ./roteiro2/main.md
