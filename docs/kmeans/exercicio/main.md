@@ -14,16 +14,6 @@ Outro ponto é que o **Mush** é 100% separável pela classe (eatible x poisonou
 
 
 
-## Etapas
-
-- [x] Exploração dos Dados (EDA) 
-- [x] Pré-processamento
-- [x] Divisão dos Dados
-- [x] Treinamento do Modelo
-- [x] Avaliação do Modelo
-- [x] Relatório Final
-
-
 ### 1. Exploração dos Dados (EDA)
 O conjunto de dados Mall Customers é composto por 200 clientes de um shopping center, com as seguintes variáveis: CustomerID (identificador), Gender (gênero), Age (idade), Annual Income ($) (renda anual em milhares de dólares) e Spending Score (1–100) (pontuação atribuída pelo shopping com base no comportamento de compra).
 
@@ -32,9 +22,9 @@ A análise exploratória inicial mostrou que não há valores ausentes nas vari�
 Os gráficos de dispersão entre idade, renda e Spending Score indicam que não existe uma relação linear forte entre essas variáveis, o que reforça a necessidade de usar técnicas de agrupamento para identificar segmentos de clientes com padrões de comportamento semelhantes.
 
 === "Gráfico"
-    ![Distribuição das variáveis numéricas](img/distribuicao_variaveis_numericas.png)  
-    ![Distribuição por Gênero](img/distribuicao_genero.png)
-    ![Idade x Renda](img/age_x_annual_income.png.png)
+    ![Distribuição das variáveis numéricas](./img/distribuicao_variaveis_numericas.png)  
+    ![Distribuição por Gênero](./img/img/distribuicao_genero.png)
+    ![Idade x Renda](./img/age_x_annual_income.png.png)
 
 ---
 
@@ -88,7 +78,7 @@ valor costuma gerar segmentos mais úteis e facilmente interpretáveis.
 
 
 === "Gráfico"
-    ![Distribuição das variáveis numéricas](img/kmeans_elbow_method.png)  
+    ![Distribuição das variáveis numéricas](./img/kmeans_elbow_method.png)  
 
 ---
 
