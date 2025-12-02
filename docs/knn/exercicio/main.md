@@ -2,7 +2,7 @@
 
 Aplicar o algoritmo K-Nearest Neighbors (KNN) em um conjunto de dados de classificação, utilizando a mesma base de dados empregada no experimento anterior com Árvore de Decisão (Decision Tree) — o Mushroom Dataset.
 
-O objetivo pe comparar o desempenho entre os dois algoritmos, reutilizando o mesmo processo de exploração e pré-processamento, para avaliar diferenças de comportamento e de interpretação entre modelos baseados em regras (Decision Tree) e modelos baseados em distância (KNN).
+O objetivo é comparar o desempenho entre os dois algoritmos, reutilizando o mesmo processo de exploração e pré-processamento, para avaliar diferenças de comportamento e de interpretação entre modelos baseados em regras (Decision Tree) e modelos baseados em distância (KNN).
 
 
 
