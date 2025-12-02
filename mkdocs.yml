@@ -142,10 +142,8 @@ nav:
   - KNN:
     - Exercício: ./knn/exercicio/main.md
     - Roteiro: ./knn/roteiro/main.md
-  - Roteiros:
-    - Roteiro 1: ./roteiro1/main.md
-    - Roteiro 2: ./roteiro2/main.md
-    - Roteiro 3: ./roteiro3/main.md
-    - Roteiro 4: ./roteiro4/main.md
+  - K-Means:
+    - Exercício: ./kmeans/exercicio/main.md
+    - Roteiro: ./kmeans/roteiro/main.md
 
   - Projeto: ./projeto/main.md
