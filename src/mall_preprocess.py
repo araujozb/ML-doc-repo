@@ -62,8 +62,9 @@ plt.xticks(K_range)
 plt.xlabel("Número de Clusters (K)")
 plt.title("Método do Cotovelo para KMeans")
 plt.grid(True, linestyle='--', alpha=0.5)
-plt.show()
 plt.savefig(os.path.join(IMG_DIR, "kmeans_elbow_method.png"))
+plt.show()
+
 
 
 k = 5
@@ -150,8 +151,9 @@ sns.scatterplot(
 )
 plt.title("Clusters K-Means (k=7) em PCA 2D")
 plt.legend(title="Cluster")
-plt.show()
 plt.savefig(os.path.join(IMG_DIR, "kmeans_clusters_pca.png"))
+plt.show()
+
 
 #Perfil Médio dos clusters
 df_clusters = df_pp.copy()

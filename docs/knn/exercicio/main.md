@@ -27,10 +27,6 @@ O Mushroom Dataset, obtido no OpenML, descrede 8.124 cogumeos com 22 atributos c
 ### 1. Exploração dos Dados (EDA)
 A etapa de exploração foi reaproveitada integralmente do projeto anterior, visto que as estatísticas permanecem as mesmas.
 
-=== "Gráfico"
-    ![Distribuição de Odor](img/bar_odor.png)  
-    ![Gill-color x Classe](img/stack_gillcolor_class.png)
-
 === "Explicação"
     - Dataset **Mushroom** com 8.124 amostras e 22 variáveis categóricas.  
     - Atributo alvo `class`: `e = edible (comestível)` e `p = poisonous (venenoso)`.  
@@ -231,7 +227,7 @@ Essa projeção é apenas visual — o modelo original continua sendo treinado c
     ```
 
 === "Gráfico"
-    ![.](img/decision_boundary_pca2d.png)
+    ![Decision Boundary PCA 2](img/decision_boundary_pca2d.png)
 
 === "Explicação"
     - As áreas coloridas representam regiões de decisão baseadas na distância aos vizinhos mais próximos.

@@ -22,9 +22,9 @@ A análise exploratória inicial mostrou que não há valores ausentes nas vari�
 Os gráficos de dispersão entre idade, renda e Spending Score indicam que não existe uma relação linear forte entre essas variáveis, o que reforça a necessidade de usar técnicas de agrupamento para identificar segmentos de clientes com padrões de comportamento semelhantes.
 
 === "Gráfico"
-    ![Distribuição das variáveis numéricas](./img/distribuicao_variaveis_numericas.png)  
-    ![Distribuição por Gênero](./img/img/distribuicao_genero.png)
-    ![Idade x Renda](./img/age_x_annual_income.png.png)
+    ![Distribuição das variáveis numéricas](img/distribuicao_variaveis_numericas.png)  
+    ![Distribuição por Gênero](img/distribuicao_genero.png)
+    ![Idade x Renda](img/age_x_annual_income.png.png)
 
 ---
 
