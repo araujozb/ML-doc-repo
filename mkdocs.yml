@@ -145,5 +145,8 @@ nav:
   - K-Means:
     - Exercício: ./kmeans/exercicio/main.md
     - Roteiro: ./kmeans/roteiro/main.md
+  - Metricas:
+    - Exercício: ./metricas/exercicio/main.md
+    - Roteiro: ./metricas/roteiro/main.md
 
   - Projeto: ./projeto/main.md
