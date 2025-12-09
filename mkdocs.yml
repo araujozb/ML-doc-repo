@@ -148,5 +148,7 @@ nav:
   - Metricas:
     - Exercício: ./metricas/exercicio/main.md
     - Roteiro: ./metricas/roteiro/main.md
-
+  - SVM:
+    - Exercício: ./svm/exercicio/main.md
+    - Roteiro: ./svm/roteiro/main.md
   - Projeto: ./projeto/main.md
